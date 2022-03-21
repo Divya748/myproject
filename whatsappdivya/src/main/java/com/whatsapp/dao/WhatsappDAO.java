@@ -24,6 +24,66 @@ public class WhatsappDAO implements WhatsappDAOinterface {
 		}
 	}
 
+	@Override
+	public int signUp(WhatsappUserDetails wud) {
+		PreparedStatement ps = null;
+		try {
+			ps = con.prepareStatement("insert into userdetails values(?,?,?,?,?)");
+			
+			ps.setString(1, wud.getFirstname());
+			ps.setString(2, wud.getLastname());
+			ps.setString(3, wud.getUserid());
+			ps.setString(4, wud.getEmail());
+			ps.setString(5, wud.getPassword());
+			
+			
+			i=ps.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(ps!=null) {
+					try {
+						ps.close();}
+				catch (SQLException e) {
+					e.printStackTrace();}
+				}
+			}
+		return i;
+		
+	}
+	
+	@Override
+	public WhatsappUserDetails validation(WhatsappUserDetails wud) {
+		WhatsappUserDetails data = null;
+		try {
+			
+			PreparedStatement ps = con.prepareStatement("select * from userdetails where email=?");
+			
+			ps.setString(1, wud.getEmail1());
+			
+			ResultSet s1 =ps.executeQuery();
+			if(s1.next()){
+				
+				String e=s1.getString(4);
+				String p=s1.getString(5);
+				
+				
+				
+				data=new WhatsappUserDetails();
+				
+				data.setPassword(p);
+				data.setEmail(e);
+				
+			}
+			}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
+
 	/*public int createProfile(WhatsappUserDetails wud) {
 		PreparedStatement ps = null;
 		try {
@@ -115,32 +175,7 @@ public class WhatsappDAO implements WhatsappDAOinterface {
 		return data;
 	}
 
-	public int deleteProfile(WhatsappUserDetails wud) {
-		try {
-			
-			PreparedStatement ps1 = con.prepareStatement("delete from timelinedetails where sender=?");
-			
-			ps1.setString(1, wud.getEmail());
-			
-			
-			int i1=ps1.executeUpdate();
-			if(i1>0) {
-			PreparedStatement ps = con.prepareStatement("delete from userdetails where email=?");
-			
-			ps.setString(1, wud.getEmail());
-			
-			
-			i=ps.executeUpdate();
-			}
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
-			
-		}
-		return i;
-	}
+	
 
 	public int editFirstName(WhatsappUserDetails wud) {
 		
@@ -245,66 +280,9 @@ public int editLastName(WhatsappUserDetails wud) {
 		return i;
 	}*/
 
-	@Override
-	public int signUp(WhatsappUserDetails wud) {
-		PreparedStatement ps = null;
-		try {
-			ps = con.prepareStatement("insert into userdetails values(?,?,?,?,?)");
-			
-			ps.setString(1, wud.getFirstname());
-			ps.setString(2, wud.getLastname());
-			ps.setString(3, wud.getUserid());
-			ps.setString(4, wud.getEmail());
-			ps.setString(5, wud.getPassword());
-			
-			
-			i=ps.executeUpdate();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
-			if(ps!=null) {
-					try {
-						ps.close();}
-				catch (SQLException e) {
-					e.printStackTrace();}
-				}
-			}
-		return i;
-		
-	}
+	
 
-	@Override
-	public WhatsappUserDetails validation(WhatsappUserDetails wud) {
-		WhatsappUserDetails data = null;
-		try {
-			
-			PreparedStatement ps = con.prepareStatement("select * from userdetails where email=?");
-			
-			ps.setString(1, wud.getEmail1());
-			
-			ResultSet s1 =ps.executeQuery();
-			if(s1.next()){
-				
-				String e=s1.getString(4);
-				String p=s1.getString(5);
-				
-				
-				
-				data=new WhatsappUserDetails();
-				
-				data.setPassword(p);
-				data.setEmail(e);
-				
-			}
-			}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		return data;
-	}
-
+	
 	@Override
 	public int timeline(TimelineDetails tld) {
 		PreparedStatement ps = null;
@@ -366,6 +344,32 @@ public int editLastName(WhatsappUserDetails wud) {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	public int deleteProfile(WhatsappUserDetails wud) {
+		try {
+			
+			PreparedStatement ps1 = con.prepareStatement("delete from timelinedetails where sender=?");
+			
+			ps1.setString(1, wud.getEmail());
+			
+			
+			int i1=ps1.executeUpdate();
+			if(i1>0) {
+			PreparedStatement ps = con.prepareStatement("delete from userdetails where email=?");
+			
+			ps.setString(1, wud.getEmail());
+			
+			
+			i=ps.executeUpdate();
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			
+		}
+		return i;
 	}
 
 }
