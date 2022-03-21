@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 import com.whatsapp.controller.WhatsappControllerInterface;
-import com.whatsapp.entity.WhatsappUserDetails;
+
 import com.whatsapp.utility.ControllerFactory;
 
 public class Whatsappview {

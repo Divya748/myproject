@@ -76,6 +76,77 @@ public class WhatsappController implements WhatsappControllerInterface {
 		return i;
 	}*/
 
+public int signUp() {
+		
+		System.out.println("Enter your First name");
+		String firstname = sc.next();
+		
+		System.out.println("Enter your Last name");
+		String lastname = sc.next();
+		
+		System.out.println("Enter userid with special characters and numbers");
+		userid = sc.next();
+		
+		System.out.println("Enter email");
+		String email = sc.next();
+		
+		System.out.println("Enter password");
+		String password = sc.next();
+		
+		
+		
+		
+		WhatsappUserDetails wud = EntityFactory.entityObject();
+		
+		wud.setUserid(userid);
+		wud.setFirstname(firstname);
+		wud.setLastname(lastname);
+		wud.setEmail(email);
+		wud.setPassword(password);
+		
+		
+		i = ws.signUp(wud);
+		
+		if(i>0) {
+			System.out.println("Profile Created");
+		}
+		else {
+			System.out.println("oops! something went wrong");
+		}
+		return i;
+		
+	}
+
+@Override
+public int signIn() {
+	System.out.println("Enter email");
+	String email1 = sc.next();
+	
+	System.out.println("Enter password");
+	String password1 = sc.next();
+	
+	WhatsappUserDetails wud = EntityFactory.entityObject();
+	
+	wud.setEmail1(email1);
+	wud.setPassword1(password1);
+	
+	
+	WhatsappUserDetails s1=ws.validation(wud);
+	if(s1!=null) {
+	if((s1.getPassword().equals(wud.getPassword1())) && (s1.getEmail().equals(wud.getEmail1()))) {
+		v=1;
+	
+	}
+	}
+	else {
+		System.out.println("record not found for email "+email1);
+	}
+	return v;
+	
+	
+}
+
+
 	public ArrayList<WhatsappUserDetails> viewAllProfile() {
 		
 		/*
@@ -163,11 +234,11 @@ public class WhatsappController implements WhatsappControllerInterface {
 		 */
 		
 		System.out.println("enter email to delete the profile");
-		String email = sc.next();
+		String sender_email= sc.next();
 		
 		
 		WhatsappUserDetails wud = EntityFactory.entityObject();
-		wud.setEmail(email);
+		wud.setEmail(sender_email);
 		
 		
 		i = ws.deleteProfile(wud);
@@ -233,6 +304,7 @@ public class WhatsappController implements WhatsappControllerInterface {
 						else {
 							System.out.println("oops! Name not updated");
 						}
+						break;
 				
 				case 2: System.out.println("enter new password");
 						String newpassword = sc.next();
@@ -245,6 +317,7 @@ public class WhatsappController implements WhatsappControllerInterface {
 						else {
 							System.out.println("oops! Address not updated");
 						}
+						break;
 				
 				case 3: System.out.println("enter new last name");
 						String newlastname = sc.next();
@@ -257,6 +330,7 @@ public class WhatsappController implements WhatsappControllerInterface {
 						else {
 							System.out.println("oops! Address not updated");
 						}
+						break;
 					}
 				
 				 }
@@ -270,73 +344,9 @@ public class WhatsappController implements WhatsappControllerInterface {
 
 
 	//@Override
-	public int signUp() {
-		
-		System.out.println("Enter your First name");
-		String firstname = sc.next();
-		
-		System.out.println("Enter your Last name");
-		String lastname = sc.next();
-		
-		System.out.println("Enter userid with special characters and numbers");
-		userid = sc.next();
-		
-		System.out.println("Enter email");
-		String email = sc.next();
-		
-		System.out.println("Enter password");
-		String password = sc.next();
-		
-		
-		
-		
-		WhatsappUserDetails wud = EntityFactory.entityObject();
-		
-		wud.setUserid(userid);
-		wud.setFirstname(firstname);
-		wud.setLastname(lastname);
-		wud.setEmail(email);
-		wud.setPassword(password);
-		
-		
-		i = ws.signUp(wud);
-		
-		if(i>0) {
-			System.out.println("Profile Created");
-		}
-		else {
-			System.out.println("oops! something went wrong");
-		}
-		return i;
-		
-	}
+	
 
-
-
-	@Override
-	public int signIn() {
-		System.out.println("Enter email");
-		String email1 = sc.next();
-		
-		System.out.println("Enter password");
-		String password1 = sc.next();
-		
-		WhatsappUserDetails wud = EntityFactory.entityObject();
-		
-		wud.setEmail1(email1);
-		wud.setPassword1(password1);
-		
-		
-		WhatsappUserDetails s1=ws.validation(wud);
-		
-		if((s1.getPassword().equals(wud.getPassword1())) && (s1.getEmail().equals(wud.getEmail1()))) {
-			v=1;
-		
-		}
-		return v;
-		
-		
-	}
+	
 
 
 
@@ -346,7 +356,7 @@ public class WhatsappController implements WhatsappControllerInterface {
 		System.out.println("enter message id");
 		String messageid = sc.next();
 		
-		System.out.println("enter sender userid");
+		System.out.println("enter sender emailid");
 		String sender = sc.next();
 		
 		//receiver id should be in userdetails table

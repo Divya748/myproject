@@ -118,12 +118,20 @@ public class WhatsappDAO implements WhatsappDAOinterface {
 	public int deleteProfile(WhatsappUserDetails wud) {
 		try {
 			
+			PreparedStatement ps1 = con.prepareStatement("delete from timelinedetails where sender=?");
+			
+			ps1.setString(1, wud.getEmail());
+			
+			
+			int i1=ps1.executeUpdate();
+			if(i1>0) {
 			PreparedStatement ps = con.prepareStatement("delete from userdetails where email=?");
 			
 			ps.setString(1, wud.getEmail());
 			
 			
 			i=ps.executeUpdate();
+			}
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
@@ -279,8 +287,9 @@ public int editLastName(WhatsappUserDetails wud) {
 			ResultSet s1 =ps.executeQuery();
 			if(s1.next()){
 				
-				String p=s1.getString(5);
 				String e=s1.getString(4);
+				String p=s1.getString(5);
+				
 				
 				
 				data=new WhatsappUserDetails();
