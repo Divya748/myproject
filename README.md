@@ -23,4 +23,4 @@ This Project is like telegram and here we will implement 8 functionalities like
 3. Eclipse
 
 ## To run this file go to the given path
-[Run Whatsapp View]
+[Run Whatsapp View](whatsappdivya/src/main/java/com/whatsapp/view/Whatsappview.java)
