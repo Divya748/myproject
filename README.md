@@ -15,7 +15,7 @@ This Project is like telegram and here we will implement 8 functionalities like
     - Timeline
 
 ## Project-Struture
-<img src="project-Tree.jpeg" width = "400" height = "700">
+<img src="project_Tree.jpeg" width = "400" height = "700">
 
 ## Software Requirements of the project
 1. Java 1.8
@@ -23,4 +23,4 @@ This Project is like telegram and here we will implement 8 functionalities like
 3. Eclipse
 
 ## To run this file go to the given path
-[Run Telegram View](telegram/telegram/src/main/java/com/telegram/view/TelegramView.java)
+[Run Whatsapp View]
