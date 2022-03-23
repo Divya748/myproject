@@ -68,29 +68,29 @@ public class WhatsappController implements WhatsappControllerInterface {
 		i = ws.createProfile(wud);
 		
 		if(i>0) {
-			System.out.println("profile created");
+			log.info("profile created");
 		}
 		else {
-			System.out.println("profile not created");
+			log.info("profile not created");
 		}
 		return i;
 	}*/
 
 public int signUp() {
 		
-		System.out.println("Enter your First name");
+		log.info("Enter your First name");
 		String firstname = sc.next();
 		
-		System.out.println("Enter your Last name");
+		log.info("Enter your Last name");
 		String lastname = sc.next();
 		
-		System.out.println("Enter userid with special characters and numbers");
+		log.info("Enter userid with special characters and numbers");
 		userid = sc.next();
 		
-		System.out.println("Enter email");
+		log.info("Enter email");
 		String email = sc.next();
 		
-		System.out.println("Enter password");
+		log.info("Enter password");
 		String password = sc.next();
 		
 		
@@ -108,10 +108,10 @@ public int signUp() {
 		i = ws.signUp(wud);
 		
 		if(i>0) {
-			System.out.println("Profile Created");
+			log.info("Profile Created");
 		}
 		else {
-			System.out.println("oops! something went wrong");
+			log.info("oops! something went wrong");
 		}
 		return i;
 		
@@ -119,10 +119,10 @@ public int signUp() {
 
 @Override
 public int signIn() {
-	System.out.println("Enter email");
+	log.info("Enter email");
 	String email1 = sc.next();
 	
-	System.out.println("Enter password");
+	log.info("Enter password");
 	String password1 = sc.next();
 	
 	WhatsappUserDetails wud = EntityFactory.entityObject();
@@ -139,7 +139,7 @@ public int signIn() {
 	}
 	}
 	else {
-		System.out.println("record not found for email "+email1);
+		log.info("record not found for email "+email1);
 	}
 	return v;
 	
@@ -163,23 +163,23 @@ public int signIn() {
 		
 		ArrayList<WhatsappUserDetails> l1= ws.viewAllprofile();
 		l1.forEach(i->{
-			System.out.println("******************");
-			System.out.println("First name is "+i.getFirstname());
-			System.out.println("Name is "+i.getLastname());
-			System.out.println("User-Id is "+i.getUserid());
-			System.out.println("Email is "+i.getEmail());
-			System.out.println("Password is "+i.getPassword());
+			log.info("******************");
+			log.info("First name is "+i.getFirstname());
+			log.info("Name is "+i.getLastname());
+			log.info("User-Id is "+i.getUserid());
+			log.info("Email is "+i.getEmail());
+			log.info("Password is "+i.getPassword());
 			
 			});
 		/*for(WhatsappUserDetails i:l1) {
-			System.out.println("******************");
-			System.out.println("Name is "+i.getName());
-			System.out.println("Email is "+i.getPassword());
-			System.out.println("Password is "+i.getEmail());
-			System.out.println("Address is "+i.getAddress());
+			log.info("******************");
+			log.info("Name is "+i.getName());
+			log.info("Email is "+i.getPassword());
+			log.info("Password is "+i.getEmail());
+			log.info("Address is "+i.getAddress());
 			
 		}*/
-		//System.out.println("after sorting");
+		//log.info("after sorting");
 		
 		//Collections.sort(l1, new SortByFirstName());
 		return l1;
@@ -199,7 +199,7 @@ public int signIn() {
 		
 		
 		
-		System.out.println("enter email to see profile of that email");
+		log.info("enter email to see profile of that email");
 		String email = sc.next();
 		
 		WhatsappUserDetails wud = EntityFactory.entityObject();
@@ -208,14 +208,14 @@ public int signIn() {
 		WhatsappUserDetails s1=ws.viewProfile(wud);
 		
 		if(s1!=null) {
-			System.out.println("***************************************************");
-			System.out.println("FirstName \t LastName \t Email \t password");
-			System.out.println("---------------------------------------------------");
-			System.out.println(s1.getFirstname()+"\t"+s1.getLastname()+"\t"+s1.getEmail()+"\t"+s1.getPassword());
-			System.out.println("***************************************************");
+			log.info("***************************************************");
+			log.info("FirstName \t LastName \t Email \t password");
+			log.info("---------------------------------------------------");
+			log.info(s1.getFirstname()+"\t"+s1.getLastname()+"\t"+s1.getEmail()+"\t"+s1.getPassword());
+			log.info("***************************************************");
 		}
 		else {
-			System.out.println("Profile not found");
+			log.info("Profile not found");
 		}
 		
 		return s1;
@@ -233,7 +233,7 @@ public int signIn() {
 		 written by : Mallela Divya
 		 */
 		
-		System.out.println("enter email to delete the profile");
+		log.info("enter email to delete the profile");
 		String sender_email= sc.next();
 		
 		
@@ -244,10 +244,10 @@ public int signIn() {
 		i = ws.deleteProfile(wud);
 		
 		if(i>0) { 
-			System.out.println("profile deleted");
+			log.info("profile deleted");
 		}
 		else {
-			System.out.println("profile not deleted");
+			log.info("profile not deleted");
 		}
 		return i;
 	}
@@ -268,7 +268,7 @@ public int signIn() {
 		 written by : Mallela Divya
 		 */
 		
-		System.out.println("enter email to edit the profile");
+		log.info("enter email to edit the profile");
 		String email = sc.next();
 		
 		
@@ -278,64 +278,64 @@ public int signIn() {
 		
 		WhatsappUserDetails s1=ws.viewProfile(wud);
 		
-		System.out.println("Profile details");
+		log.info("Profile details");
 		if(s1!=null) {
-			System.out.println("***************************************************");
-			System.out.println("FirstName \t LastName \t Password \t Email");
-			System.out.println("---------------------------------------------------");
-			System.out.println(s1.getFirstname()+"\t"+s1.getLastname()+"\t"+s1.getPassword()+"\t"+s1.getEmail());
-			System.out.println("***************************************************");
+			log.info("***************************************************");
+			log.info("FirstName \t LastName \t Password \t Email");
+			log.info("---------------------------------------------------");
+			log.info(s1.getFirstname()+"\t"+s1.getLastname()+"\t"+s1.getPassword()+"\t"+s1.getEmail());
+			log.info("***************************************************");
 			
-			System.out.println("enter your choice to edit particular field");
-			System.out.println("press 1 to edit First Name \n"
+			log.info("enter your choice to edit particular field");
+			log.info("press 1 to edit First Name \n"
 								+"press 2 to edit Password \n"
 								+"press 3 to edit Last name");
 			int ch=sc.nextInt();
 			
 			switch(ch) {
-				case 1: System.out.println("enter new firstname");
+				case 1: log.info("enter new firstname");
 						String newfirstname = sc.next();
 						wud.setNewfirstname(newfirstname);
 						i = ws.editFirstName(wud);
 						
 						if(i>0) { 
-							System.out.println("First Name edited");
+							log.info("First Name edited");
 						}
 						else {
-							System.out.println("oops! Name not updated");
+							log.info("oops! Name not updated");
 						}
 						break;
 				
-				case 2: System.out.println("enter new password");
+				case 2: log.info("enter new password");
 						String newpassword = sc.next();
 						wud.setNewpassword(newpassword);
 						i = ws.editPassword(wud);
 						
 						if(i>0) { 
-							System.out.println("Password updated");
+							log.info("Password updated");
 						}
 						else {
-							System.out.println("oops! Address not updated");
+							log.info("oops! Address not updated");
 						}
 						break;
 				
-				case 3: System.out.println("enter new last name");
+				case 3: log.info("enter new last name");
 						String newlastname = sc.next();
 						wud.setNewlastname(newlastname);
 						i = ws.editLastName(wud);
 						
 						if(i>0) { 
-							System.out.println("Last name updated");
+							log.info("Last name updated");
 						}
 						else {
-							System.out.println("oops! Address not updated");
+							log.info("oops! Address not updated");
 						}
 						break;
 					}
 				
 				 }
 		else {
-			System.out.println("Profile not found");
+			log.info("Profile not found");
 		}	
 	return s1;
 	}
@@ -353,20 +353,20 @@ public int signIn() {
 	@Override
 	public int timeline() {
 		
-		System.out.println("enter message id");
+		log.info("enter message id");
 		String messageid = sc.next();
 		
-		System.out.println("enter sender emailid");
+		log.info("enter sender emailid");
 		String sender = sc.next();
 		
 		//receiver id should be in userdetails table
-		System.out.println("enter reciver id");
+		log.info("enter reciver id");
 		String receiver = sc.next();
 		
-		System.out.println("enter message");
+		log.info("enter message");
 		String message = sc.next();
 		
-		System.out.println("enter date");
+		log.info("enter date");
 		String date = sc.next();
 		
 		
@@ -384,10 +384,10 @@ public int signIn() {
 		int i= ws.timeline(tld);
 		
 		if(i>0) {
-			System.out.println("timeline updated");
+			log.info("timeline updated");
 		}
 		else {
-			System.out.println("oops! something went wrong");
+			log.info("oops! something went wrong");
 		}
 		return i;
 		
@@ -398,7 +398,7 @@ public int signIn() {
 	@Override
 	public List<WhatsappUserDetails> searchProfile() {
 		
-		System.out.println("Enter first name");
+		log.info("Enter first name");
 		String firstname = sc.next();
 		
 		WhatsappUserDetails wud = EntityFactory.entityObject();
@@ -406,11 +406,11 @@ public int signIn() {
 		wud.setFirstname(firstname);
 		List<WhatsappUserDetails> l1= ws.searchProfile(wud);
 		l1.forEach(i->{
-			System.out.println("******************");
-			System.out.println("First name is "+i.getFirstname());
-			System.out.println("Name is "+i.getLastname());
-			System.out.println("Email is "+i.getEmail());
-			System.out.println("Password is "+i.getPassword());
+			log.info("******************");
+			log.info("First name is "+i.getFirstname());
+			log.info("Name is "+i.getLastname());
+			log.info("Email is "+i.getEmail());
+			log.info("Password is "+i.getPassword());
 			
 			});
 		return l1;

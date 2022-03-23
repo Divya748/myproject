@@ -1,15 +1,16 @@
 package com.whatsapp.view;
 
 import java.util.Scanner;
-
-
+import java.util.logging.Logger;
 import com.whatsapp.controller.WhatsappControllerInterface;
 
 import com.whatsapp.utility.ControllerFactory;
 
 public class Whatsappview {
 	static int ch ;
+	
 	static Scanner sc = new Scanner(System.in);
+	static Logger log =Logger.getLogger("Whatsappview");
 	public static void main(String[] args)  {
 		
 		WhatsappControllerInterface wc=ControllerFactory.controllerObject();
@@ -17,15 +18,15 @@ public class Whatsappview {
 		
 		String s = "y";
 		while(s.equals("y")) {
-			System.out.println("**************************************************");
-			System.out.println("                                                  ");
-			System.out.println("Welcome! Sign-In or Sign-Up to reach our website");
-			System.out.println("                                                  ");
-			System.out.println("**************************************************");
-			System.out.println("press 1 to sign-up");
-			System.out.println("press 2 to sign-in");
+			log.info("**************************************************");
+			log.info("                                                  ");
+			log.info("Welcome! Sign-In or Sign-Up to reach our website");
+			log.info("                                                  ");
+			log.info("**************************************************");
+			log.info("press 1 to sign-up");
+			log.info("press 2 to sign-in");
 			
-			System.out.println("enter your choice");
+			log.info("enter your choice");
 			ch = sc.nextInt();
 		switch(ch) {
 			case 1: wc.signUp();
@@ -34,15 +35,15 @@ public class Whatsappview {
 					if(s1==1) {
 						while(s.equals("y")) {
 							
-							System.out.println("                         ******Main Menu*******");
-							System.out.println("                         press 1 to view all profile");
-							System.out.println("                         press 2 to view profile");
-							System.out.println("                         press 3 to delete profile");
-							System.out.println("                         press 4 to edit profile");
-							System.out.println("                         press 5 to create timeline");
-							System.out.println("                         press 6 to search profile");
+							log.info("                         ******Main Menu*******");
+							log.info("                         press 1 to view all profile");
+							log.info("                         press 2 to view profile");
+							log.info("                         press 3 to delete profile");
+							log.info("                         press 4 to edit profile");
+							log.info("                         press 5 to create timeline");
+							log.info("                         press 6 to search profile");
 							
-							System.out.println("enter your choice");
+							log.info("enter your choice");
 							
 							ch = sc.nextInt();
 							
@@ -64,17 +65,17 @@ public class Whatsappview {
 								case 6: wc.searchProfile();
 										break;
 							}
-							System.out.println("press y/n to continue");
+							log.info("press y/n to continue");
 							s=sc.next();
 						}
 					}
 					
 					else {
-						System.out.println("Opps! enter correct password or if you are not registered.. please press 1 to sigh-up");
+						log.info("Opps! enter correct password or if you are not registered.. please press 1 to sigh-up");
 					}
 					break;
 		}
-		System.out.println("press y/n to continue");
+		log.info("press y/n to continue");
 		s=sc.next();
 		
 		
